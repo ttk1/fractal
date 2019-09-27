@@ -18,4 +18,4 @@ npm run dist
 
 ## 実行結果
 
-![実行結果](./result.gif)
+![実行結果](./result.png)
