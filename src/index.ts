@@ -1,9 +1,7 @@
-const canvasSize = [500, 500];
-
 window.onload = () => {
   const canvas = document.getElementById('canvas') as HTMLCanvasElement;
-  canvas.width = canvasSize[0];
-  canvas.height = canvasSize[1];
+  canvas.width = 500;
+  canvas.height = 500;
 
   const gl = canvas.getContext('webgl2');
   gl.clearColor(0.0, 0.0, 0.0, 1.0);
@@ -29,8 +27,17 @@ window.onload = () => {
   gl.linkProgram(program);
   gl.useProgram(program);
 
-  const sizeLoc = gl.getUniformLocation(program, 'size');
-  gl.uniform2fv(sizeLoc, canvasSize);
+  let count = 0;
+  step();
 
-  gl.drawArrays(gl.TRIANGLE_FAN, 0, 4);
+  function step() {
+    const sizeLoc = gl.getUniformLocation(program, 'size');
+    gl.uniform2fv(sizeLoc, [canvas.width + count % canvas.width, canvas.height + count % canvas.height]);
+
+    gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.drawArrays(gl.TRIANGLE_FAN, 0, 4);
+
+    count++;
+    requestAnimationFrame(step);
+  }
 };
