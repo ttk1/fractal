@@ -1,4 +1,4 @@
-const canvasSize = [500, 250];
+const canvasSize = [500, 500];
 
 window.onload = () => {
   const canvas = document.getElementById('canvas') as HTMLCanvasElement;
