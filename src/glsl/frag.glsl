@@ -13,14 +13,13 @@ const vec2 p3 = vec2(0.0, 1.0);
 void f(vec2 pos) {}
 
 void main() {
-  if (dot(gl_FragCoord.xy / size, p1 - p2) < 0.0 &&
-      dot(gl_FragCoord.xy / size, p2 - p3) < 0.0 &&
-      dot(gl_FragCoord.xy / size, p3 - p1) < 1.0) {
-    if (dot(gl_FragCoord.xy / size, p2 - p3) < -0.5) {
+  vec2 p = gl_FragCoord.xy / size;
+  if (dot(p, p1 - p2) < 0.0 && dot(p, p2 - p3) < 0.0 && dot(p, p3 - p1) < 1.0) {
+    if (dot(p, p2 - p3) < -0.5) {
       color = vec4(1.0, 1.0, 1.0, 1.0);
-    } else if (dot(gl_FragCoord.xy / size, p1 - p2) < -0.5) {
+    } else if (dot(p, p1 - p2) < -0.5) {
       color = vec4(1.0, 1.0, 1.0, 1.0);
-    } else if (dot(gl_FragCoord.xy / size, p3 - p1) < 0.5) {
+    } else if (dot(p, p3 - p1) < 0.5) {
       color = vec4(1.0, 1.0, 1.0, 1.0);
     } else {
       discard;
