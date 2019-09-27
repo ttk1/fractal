@@ -1,7 +1,7 @@
 window.onload = () => {
   const canvas = document.getElementById('canvas') as HTMLCanvasElement;
-  canvas.width = 500;
-  canvas.height = 500;
+  canvas.width = 800;
+  canvas.height = 700;
 
   const gl = canvas.getContext('webgl2');
   gl.clearColor(0.0, 0.0, 0.0, 1.0);
@@ -32,12 +32,13 @@ window.onload = () => {
 
   function step() {
     const sizeLoc = gl.getUniformLocation(program, 'size');
-    gl.uniform2fv(sizeLoc, [canvas.width + count % canvas.width, canvas.height + count % canvas.height]);
+    gl.uniform2fv(sizeLoc, [(1 + count / 500) * canvas.width, (1 + count / 500) * canvas.height]);
 
     gl.clear(gl.COLOR_BUFFER_BIT);
     gl.drawArrays(gl.TRIANGLE_FAN, 0, 4);
 
     count++;
+    count %= 500;
     requestAnimationFrame(step);
   }
 };
