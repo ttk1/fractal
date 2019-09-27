@@ -1,9 +1,11 @@
-window.onload = () => {
-  const cvs = document.getElementById('canvas') as HTMLCanvasElement;
-  cvs.width = 500;
-  cvs.height = 500;
+const canvasSize = [500, 250];
 
-  const gl = cvs.getContext('webgl2');
+window.onload = () => {
+  const canvas = document.getElementById('canvas') as HTMLCanvasElement;
+  canvas.width = canvasSize[0];
+  canvas.height = canvasSize[1];
+
+  const gl = canvas.getContext('webgl2');
   gl.clearColor(0.0, 0.0, 0.0, 1.0);
   gl.clear(gl.COLOR_BUFFER_BIT);
 
@@ -26,5 +28,9 @@ window.onload = () => {
   gl.attachShader(program, fragmentShader);
   gl.linkProgram(program);
   gl.useProgram(program);
+
+  const sizeLoc = gl.getUniformLocation(program, 'size');
+  gl.uniform2fv(sizeLoc, canvasSize);
+
   gl.drawArrays(gl.TRIANGLE_FAN, 0, 4);
 };
