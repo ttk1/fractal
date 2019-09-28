@@ -16,6 +16,7 @@ npm start
 npm run dist
 ```
 
-## 実行結果
+## デモ
 
-![実行結果](./result.png)
+* https://ttk1.github.io/fractal/
+  * WebGL 2.0に対応したブラウザで実行できます
