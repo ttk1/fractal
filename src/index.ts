@@ -28,17 +28,17 @@ window.onload = () => {
   gl.useProgram(program);
 
   let count = 0;
+  const rate = 100;
   step();
 
   function step() {
     const sizeLoc = gl.getUniformLocation(program, 'size');
-    gl.uniform2fv(sizeLoc, [(1 + count / 500) * canvas.width, (1 + count / 500) * canvas.height]);
+    gl.uniform2fv(sizeLoc, [(1 + count / rate) * canvas.width, (1 + count / rate) * canvas.height]);
 
     gl.clear(gl.COLOR_BUFFER_BIT);
     gl.drawArrays(gl.TRIANGLE_FAN, 0, 4);
 
-    count++;
-    count %= 500;
+    count = (count + 1) % rate;
     requestAnimationFrame(step);
   }
 };

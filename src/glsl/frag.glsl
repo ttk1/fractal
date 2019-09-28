@@ -6,13 +6,14 @@ out vec4 color;
 
 uniform vec2 size;
 
-const int level = 7;
+const int level = 8;
 const vec2 p1 = vec2(0.0, -1.0);
 const vec2 p2 = vec2(-1.0, 0.5);
 const vec2 p3 = vec2(1.0, 0.5);
 
 void main() {
   vec2 p = gl_FragCoord.xy / size;
+  color = vec4(1.0, 1.0, 1.0, 1.0);
   if (dot(p, p1) < 0.0 && dot(p, p2) < 0.0 && dot(p, p3) < 1.0) {
     for (int i = 0; i < level; i++) {
       if (dot(p, p1) < -0.5) {
@@ -29,7 +30,6 @@ void main() {
         break;
       }
     }
-    color = vec4(1.0, 1.0, 1.0, 1.0);
   } else {
     discard;
   }
